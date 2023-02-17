@@ -21,13 +21,15 @@ const mongoSanitize = require("express-mongo-sanitize");
 const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
+// const dbUrl = process.env.DB_URL; // for deployment
 
 main().catch((err) => {
   console.log("Mongo connection error!");
   console.log(err);
 });
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/yelp-camp");
+  // await mongoose.connect(dbUrl); // for deployment
+  await mongoose.connect("mongodb://127.0.0.1:27017/yelp-camp"); // for development
   console.log("Database connected.");
 }
 
