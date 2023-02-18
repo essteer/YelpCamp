@@ -21,15 +21,17 @@ const mongoSanitize = require("express-mongo-sanitize");
 const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
-// const dbUrl = process.env.DB_URL; // for deployment
+
+const MongoStore = require("connect-mongo");
+
+const dbUrl = "mongodb://127.0.0.1:27017/yelp-camp"; // || process.env.DB_URL;
 
 main().catch((err) => {
   console.log("Mongo connection error!");
   console.log(err);
 });
 async function main() {
-  // await mongoose.connect(dbUrl); // for deployment
-  await mongoose.connect("mongodb://127.0.0.1:27017/yelp-camp"); // for development
+  await mongoose.connect(dbUrl);
   console.log("Database connected.");
 }
 
@@ -44,7 +46,18 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(mongoSanitize());
 
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  secret: "thisshouldbeabettersecret!",
+  touchAfter: 24 * 60 * 60, // time period in seconds
+});
+
+store.on("error", function (e) {
+  console.log("Session store error!", e);
+});
+
 const sessionConfig = {
+  store,
   name: "session", // change from default connect.sid to prevent simple scripts
   secret: "thisshouldbeabettersecret!",
   resave: false,
@@ -56,6 +69,7 @@ const sessionConfig = {
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
 };
+
 app.use(session(sessionConfig));
 app.use(flash());
 // commenting out the below according to instruction:
