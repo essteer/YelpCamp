@@ -7,7 +7,7 @@ const map = new mapboxgl.Map({
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
   style: "mapbox://styles/mapbox/light-v11",
   center: [114.109497, 22.396428],
-  zoom: 11,
+  zoom: 10,
 });
 
 map.addControl(new mapboxgl.NavigationControl());
