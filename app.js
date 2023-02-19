@@ -48,8 +48,10 @@ app.use(mongoSanitize());
 
 const store = MongoStore.create({
   mongoUrl: dbUrl,
-  secret: "thisshouldbeabettersecret!",
   touchAfter: 24 * 60 * 60, // time period in seconds
+  crypto: {
+    secret: "thisshouldbeabettersecret!",
+  },
 });
 
 store.on("error", function (e) {
@@ -128,7 +130,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-  // console.log(req.query);
   res.locals.currentUser = req.user;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
