@@ -12,7 +12,7 @@ const map = new mapboxgl.Map({
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
   style: "mapbox://styles/mapbox/outdoors-v12",
   center: [114.15, 22.33],
-  zoom: 8,
+  zoom: 8.5,
   maxBounds: bounds,
 });
 
