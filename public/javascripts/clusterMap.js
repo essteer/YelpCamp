@@ -2,16 +2,18 @@
 // ADD YOUR ACCESS TOKEN FROM
 // https://account.mapbox.com
 mapboxgl.accessToken = mapToken;
+const bounds = [
+  [113.535, 21.85], // Southwest coordinates
+  [114.85, 22.85], // Northeast coordinates
+];
+
 const map = new mapboxgl.Map({
   container: "cluster-map",
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
   style: "mapbox://styles/mapbox/outdoors-v12",
-  // center: [114.16891, 22.34831], // Beacon Hill Viewing Platform
-  // center: [114.18516, 22.35257], // Lion Rock
-  // center: [114.16981, 22.33992], // SSP
-  center: [114.15661, 22.34124], // SSP
-
-  zoom: 9.75,
+  center: [114.15, 22.33],
+  zoom: 8,
+  maxBounds: bounds,
 });
 
 map.addControl(new mapboxgl.NavigationControl());
