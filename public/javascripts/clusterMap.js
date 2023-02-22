@@ -10,9 +10,9 @@ const bounds = [
 const map = new mapboxgl.Map({
   container: "cluster-map",
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-  style: "mapbox://styles/mapbox/outdoors-v12",
+  style: "mapbox://styles/essteer/clecyji2s000c01msfsf6ldlv",
   center: [114.136253, 22.356514],
-  zoom: 9.55,
+  zoom: 9.4,
   maxBounds: bounds,
 });
 
