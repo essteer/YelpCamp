@@ -74,9 +74,6 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 app.use(flash());
-// commenting out the below according to instruction:
-// https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22348128#questions/17133504
-// app.use(helmet());
 
 const scriptSrcUrls = [
   "https://stackpath.bootstrapcdn.com/",
